@@ -5,7 +5,7 @@ import './App.css';
 
 import Holidays from './pages/Holidays';
 import Home from './pages/Home';
-import Dogs from './pages/Dogs';
+import Upload from './pages/Upload';
 
 class App extends Component {
 
@@ -26,14 +26,14 @@ class App extends Component {
                 <NavLink to="/holidays">Holidays</NavLink>
               </li>
               <li>
-                <NavLink to="/dogs">Dogs</NavLink>
+                <NavLink to="/upload-files">Upload files</NavLink>
               </li>
             </ul>
           </nav>
           <div id="contents">
             <Route path="/" exact component={Home} />
             <Route path="/holidays" component={Holidays} />
-            <Route path="/dogs" component={Dogs} />
+            <Route path="/upload-files" component={Upload} />
           </div>
         </div>
       </Router>
