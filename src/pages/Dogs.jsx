@@ -3,7 +3,7 @@ import React from "react";
 class Dog extends React.Component {
   state = {
     input: "",
-    breed: {}
+    pictures: []
   };
   render() {
     return (
@@ -12,7 +12,7 @@ class Dog extends React.Component {
           <input
             type="text"
             name="input"
-            value={this.state.dog}
+            value={this.state.input}
             onChange={this.handleOnChange}
           />
           <input
@@ -38,15 +38,17 @@ class Dog extends React.Component {
   getDogsByBreed(dogBreed) {
     return fetch("https://dog.ceo/api/breed/" + dogBreed + "/images").then(
       response => {
-        return response.json();
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          this.setState({ input: "", pictures: [] });
+          return;
+        }
       }
     );
   }
   handleOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
-    console.log(this.state.breed);
-    console.log(this.state.breed.message);
   };
 
   handleSubmit = e => {
@@ -56,12 +58,15 @@ class Dog extends React.Component {
       return false;
     }
     this.getDogsByBreed(this.state.input).then(pictures => {
-      this.setState({ breed: pictures });
+      if (pictures) {
+        this.setState({ pictures: pictures.message });
+      }
     });
   };
+
   getRows() {
-    if (this.state.breed.message != null) {
-      return this.state.breed.message.map(picture => {
+    if (this.state.pictures[0] !== null) {
+      return this.state.pictures.map(picture => {
         return (
           <tr key={picture}>
             <td>
@@ -70,8 +75,8 @@ class Dog extends React.Component {
           </tr>
         );
       });
-    }else{
-      console.log("does not have this.state.breed.message")
+    } else {
+      console.log("does not have this.state.breed.message");
     }
   }
 }
