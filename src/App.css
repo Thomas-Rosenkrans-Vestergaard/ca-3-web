@@ -16,10 +16,19 @@ a {
 
 nav ul li {
   float:left;
-  padding: 20px;
   list-style: none;
+}
+
+nav ul li a {
+  display:block;
+  padding: 20px;
   background: #eee;
   margin-right: 20px;
+  color: #222;
+}
+
+nav ul li a.active {
+  background: orange;
 }
 
 nav ul li a {

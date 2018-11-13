@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import './App.css';
 
 import Holidays from './pages/Holidays';
@@ -18,10 +18,10 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/" exact>Home</Link>
+                <NavLink to="/" exact>Home</NavLink>
               </li>
               <li>
-                <Link to="/holidays">Holidays</Link>
+                <NavLink to="/holidays">Holidays</NavLink>
               </li>
             </ul>
           </nav>

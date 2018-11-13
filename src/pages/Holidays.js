@@ -8,7 +8,7 @@ class Holidays extends Component {
 
     render() {
         return (
-            <div id="home-page">
+            <div id="holidays-page">
                 <h2>Holidays</h2>
             </div>
         );
