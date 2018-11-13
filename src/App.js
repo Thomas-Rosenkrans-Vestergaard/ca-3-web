@@ -5,6 +5,7 @@ import './App.css';
 
 import Holidays from './pages/Holidays';
 import Home from './pages/Home';
+import Dogs from './pages/Dogs';
 
 class App extends Component {
 
@@ -24,11 +25,15 @@ class App extends Component {
               <li>
                 <NavLink to="/holidays">Holidays</NavLink>
               </li>
+              <li>
+                <NavLink to="/dogs">Dogs</NavLink>
+              </li>
             </ul>
           </nav>
           <div id="contents">
             <Route path="/" exact component={Home} />
             <Route path="/holidays" component={Holidays} />
+            <Route path="/dogs" component={Dogs} />
           </div>
         </div>
       </Router>
