@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 
-import Holidays from './pages/Holidays';
-import Home from './pages/Home';
-import Upload from './pages/Upload';
+import Holidays from "./pages/Holidays";
+import Home from "./pages/Home";
+import Upload from "./pages/Upload";
+import Dogs from "./pages/Dogs";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <Router>
@@ -20,7 +19,9 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact>Home</NavLink>
+                <NavLink to="/" exact>
+                  Home
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/holidays">Holidays</NavLink>
@@ -28,12 +29,16 @@ class App extends Component {
               <li>
                 <NavLink to="/upload-files">Upload files</NavLink>
               </li>
+              <li>
+                <NavLink to="/dogs">Dogs</NavLink>
+              </li>
             </ul>
           </nav>
           <div id="contents">
             <Route path="/" exact component={Home} />
             <Route path="/holidays" component={Holidays} />
             <Route path="/upload-files" component={Upload} />
+            <Route path="/dogs" component={Dogs} />
           </div>
         </div>
       </Router>
