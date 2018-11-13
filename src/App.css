@@ -7,11 +7,17 @@
 p {
   font-size: 16px;
   color: #222;
+  line-height: 30px;
+  margin-bottom: 20px;
 }
 
 a {
   font-size: 16px;
   color: blue;
+}
+
+nav {
+  background: orange !important;
 }
 
 nav ul li {
@@ -20,15 +26,7 @@ nav ul li {
 }
 
 nav ul li a {
-  display:block;
-  padding: 20px;
-  background: #eee;
-  margin-right: 20px;
-  color: #222;
-}
-
-nav ul li a.active {
-  background: orange;
+  color: #fff;
 }
 
 nav ul li a {
@@ -39,12 +37,26 @@ nav ul {
   overflow: auto;
 }
 
-#container {
-  padding: 20px;
-  margin: 0 auto;
+#contents {
+  padding: 0 1em 0 1em;
   max-width: 1024px;
+  margin: 0 auto;
 }
 
-#contents {
-  margin-top: 20px;
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th {
+  text-align: left;
+}
+
+th, td {
+  padding: 10px;
+  font-size:  14px;
+}
+
+tbody tr:nth-of-type(2n){
+  background: #eee;
 }
