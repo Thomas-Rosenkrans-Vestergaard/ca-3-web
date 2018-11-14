@@ -9,7 +9,9 @@ class Hearthstone extends React.Component {
     return;
   }
 
-  getHearthstoneCards()
+  getHearthstoneCards(){
+    
+  }
 }
 
 export default Hearthstone;

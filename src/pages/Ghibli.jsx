@@ -9,7 +9,9 @@ class Ghibli extends React.Component {
     return;
   }
 
-  getMovies()
+  getMovies(){
+    
+  }
 }
 
 export default Ghibli;
