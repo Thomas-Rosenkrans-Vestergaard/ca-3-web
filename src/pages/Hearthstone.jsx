@@ -5,6 +5,11 @@ class Hearthstone extends React.Component {
     super(props);
     this.state = { input: "", cards: [] };
   }
+
+  onSubmit = (event) => {
+    console.log("onSubmit called");
+  }
+
   render() {
     return (
       <div>

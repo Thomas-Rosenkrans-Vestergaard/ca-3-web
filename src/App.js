@@ -10,6 +10,7 @@ import Dogs from "./pages/Dogs";
 import Hearthstone from "./pages/Hearthstone";
 import Ghibli from "./pages/Ghibli";
 import Jokes from "./pages/Jokes";
+import StarWars from "./pages/StarWars";
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,9 @@ class App extends Component {
               <li>
                 <NavLink to="/ghibli">Ghibli</NavLink>
               </li>
+              <li>
+                <NavLink to="/star-wars">Star Wars</NavLink>
+              </li>
             </ul>
           </nav>
           <div id="contents">
@@ -55,6 +59,7 @@ class App extends Component {
             <Route path="/hearthstone" component={Hearthstone} />
             <Route path="/ghibli" component={Ghibli} />
             <Route path="/jokes" component={Jokes} />
+            <Route path="/star-wars" component={StarWars} />
           </div>
         </div>
       </Router>

@@ -44,7 +44,6 @@ class Upload extends Component {
         this.getFileData(form.elements.file, (base64) => {
             callback({
                 title: form.elements.title.value,
-                expiryDays: form.elements.expiry.value,
                 extension: re.exec(form.elements.file.files[0].name)[1],
                 data: base64
             });
@@ -53,10 +52,13 @@ class Upload extends Component {
 
     getFileData = (fileInput, callback) => {
         var reader = new FileReader();
-        reader.readAsArrayBuffer(fileInput.files[0]);
+        reader.readAsDataURL(fileInput.files[0]);
         reader.onload = function () {
-            var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(reader.result)));
-            callback(base64String);
+            let encoded = reader.result.replace(/^data:(.*;base64,)?/, '');
+            if ((encoded.length % 4) > 0) {
+              encoded += '='.repeat(4 - (encoded.length % 4));
+            }
+            callback(encoded);
         };
     }
 
@@ -72,10 +74,6 @@ class Upload extends Component {
                         <div className="col s12 input-field no-padding">
                             <input type="text" name="title" id="title-input" />
                             <label for="title-input">Title</label>
-                        </div>
-                        <div className="col s12 input-field no-padding">
-                            <input type="number" name="expiry" id="expiry-input" />
-                            <label for="expiry-input">Expiry (days)</label>
                         </div>
                         <div className="col s12 file-field input-field no-padding">
                             <div class="btn">
@@ -98,7 +96,6 @@ class Upload extends Component {
                             <th>Title</th>
                             <th>Mime</th>
                             <th>Size</th>
-                            <th>Expiry</th>
                             <th>Download</th>
                         </tr>
                     </thead>
@@ -108,7 +105,6 @@ class Upload extends Component {
                                 <td>{file.title}</td>
                                 <td>{file.mime}</td>
                                 <td>{file.size}</td>
-                                <td>{file.expiry}</td>
                                 <td>
                                     <a className="btn" target="_blank" href={urls.files + "download/" + file.id}>Download</a>
                                 </td>
