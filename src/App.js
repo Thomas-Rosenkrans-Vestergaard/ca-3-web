@@ -7,11 +7,15 @@ import Holidays from "./pages/Holidays";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import Dogs from "./pages/Dogs";
+import Hearthstone from "./pages/Hearthstone";
+import Ghibli from "./pages/Ghibli";
+import Jokes from "./pages/Jokes";
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
+  
   render() {
     return (
       <Router>
@@ -32,6 +36,15 @@ class App extends Component {
               <li>
                 <NavLink to="/dogs">Dogs</NavLink>
               </li>
+              <li>
+                <NavLink to="/hearthstone">HearthStone</NavLink>
+              </li>
+              <li>
+                <NavLink to="/jokes">Jokes</NavLink>
+              </li>
+              <li>
+                <NavLink to="/ghibli">Ghibli</NavLink>
+              </li>
             </ul>
           </nav>
           <div id="contents">
@@ -39,6 +52,9 @@ class App extends Component {
             <Route path="/holidays" component={Holidays} />
             <Route path="/upload-files" component={Upload} />
             <Route path="/dogs" component={Dogs} />
+            <Route path="/hearthstone" component={Hearthstone} />
+            <Route path="/ghibli" component={Ghibli} />
+            <Route path="/jokes" component={HJokes} />
           </div>
         </div>
       </Router>

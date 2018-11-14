@@ -36,19 +36,19 @@ class Dog extends React.Component {
   }
 
   getDogsByBreed(dogBreed) {
-    return fetch("https://dog.ceo/api/breed/" + dogBreed + "/images").then(
-      response => {
+    return fetch("http://localhost:8080/ca3/api/dogs/" + dogBreed)
+      .then(response => {
         if (response.status === 200) {
-          return response.json();
+          return response.json().then(data => data.message);
         } else {
-          this.setState({ input: "", pictures: [] });
-          return;
+          return Promise.resolve([]);
         }
-      }
-    );
+      })
+      .catch(error => console.log("aids"));
   }
+
   handleOnChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ input: e.target.value });
   };
 
   handleSubmit = e => {
@@ -58,26 +58,20 @@ class Dog extends React.Component {
       return false;
     }
     this.getDogsByBreed(this.state.input).then(pictures => {
-      if (pictures) {
-        this.setState({ pictures: pictures.message });
-      }
+      this.setState({ pictures });
     });
   };
 
   getRows() {
-    if (this.state.pictures[0] !== null) {
-      return this.state.pictures.map(picture => {
-        return (
-          <tr key={picture}>
-            <td>
-              <img src={picture} />
-            </td>
-          </tr>
-        );
-      });
-    } else {
-      console.log("does not have this.state.breed.message");
-    }
+    return this.state.pictures.map(picture => {
+      return (
+        <tr key={picture}>
+          <td>
+            <img src={picture} />
+          </td>
+        </tr>
+      );
+    });
   }
 }
 
