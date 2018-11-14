@@ -36,7 +36,7 @@ class Dog extends React.Component {
   }
 
   getDogsByBreed(dogBreed) {
-    return fetch("https://dog.ceo/api/breed/" + dogBreed + "/images").then(
+    return fetch("http://localhost:8080/ca3/api/dogs/" + dogBreed).then(
       response => {
         if (response.status === 200) {
           return response.json();
