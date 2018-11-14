@@ -6,7 +6,7 @@ class Jokes extends React.Component {
     this.state = { input: "", cards: [] };
   }
   render() {
-    return;
+    return <div></div> ;
   }
 
   getJokes() {}

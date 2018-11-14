@@ -3,15 +3,13 @@ import React from "react";
 class Ghibli extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {input: "", cards: []};
+    this.state = { input: "", cards: [] };
   }
   render() {
-    return;
+    return <div></div> ;
   }
 
-  getMovies(){
-    
-  }
+  getMovies() {}
 }
 
 export default Ghibli;

@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  
+
   render() {
     return (
       <Router>
@@ -54,7 +54,7 @@ class App extends Component {
             <Route path="/dogs" component={Dogs} />
             <Route path="/hearthstone" component={Hearthstone} />
             <Route path="/ghibli" component={Ghibli} />
-            <Route path="/jokes" component={HJokes} />
+            <Route path="/jokes" component={Jokes} />
           </div>
         </div>
       </Router>
