@@ -19,7 +19,6 @@ class Hearthstone extends React.Component {
   };
 
   render() {
-    console.log(this.state.cards);
     return (
       <div>
         <h1 className="title center">Hearthstone cards!</h1>
@@ -50,8 +49,8 @@ class Hearthstone extends React.Component {
     const buttons = [];
     for (let i = 1; i <= buttonsCount; i++) {
       buttons.push(
-        <li
-          class={
+        <li key={i}
+          className={
             i == this.state.result.pageNumber
               ? "waves-effect active"
               : "waves-effect"
@@ -65,24 +64,24 @@ class Hearthstone extends React.Component {
     }
 
     return (
-      <ul class="pagination">
+      <ul className="pagination">
         <li
-          class={
+          className={
             this.state.result.pageNumber === 1 ? "disabled" : "waves-effect"
           }
         >
           <a onClick={() => this.page(this.state.result.pageNumber - 1)}>
-            <i class="material-icons">chevron_left</i>
+            <i className="material-icons">chevron_left</i>
           </a>
         </li>
         {buttons}
         <li
-          class={
+          className={
             this.state.result.pageNumber === 74 ? "disabled" : "waves-effect"
           }
         >
           <a onClick={() => this.page(this.state.result.pageNumber + 1)}>
-            <i class="material-icons">chevron_right</i>
+            <i className="material-icons">chevron_right</i>
           </a>
         </li>
       </ul>
@@ -101,10 +100,10 @@ class Hearthstone extends React.Component {
     if (this.state.result == null) return null;
 
     console.log(this.state.cards);
-    return this.state.result.results.map(card => {
+    return this.state.result.results.map((card, index) => {
       console.log(card.img);
       return (
-        <tr key={card.flavor}>
+        <tr key={index}>
           <td>{card.name}</td>
           <td>{this.createImage(card.img)}</td>
           <td>{card.text}</td>

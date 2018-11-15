@@ -16,13 +16,10 @@ class Ghibli extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>title</th>
-
-              <th>description</th>
-
-              <th>director</th>
-
-              <th>release date</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Director</th>
+              <th>Release date</th>
             </tr>
           </thead>
           <tbody>{this.getRows()}</tbody>
@@ -39,21 +36,14 @@ class Ghibli extends React.Component {
   };
 
   getRows() {
-    return this.state.movies.map(movie => {
-      return (
-        <>
-          <tr>
+    return this.state.movies.map((movie, index) => 
+          <tr key={index}>
             <td>{movie.title}</td>
-
             <td>{movie.description}</td>
-
             <td>{movie.director}</td>
-
             <td>{movie.release_date}</td>
           </tr>
-        </>
-      );
-    });
+    );
   }
 
   getMovies = () => {
@@ -64,7 +54,6 @@ class Ghibli extends React.Component {
         }
       })
       .catch(response => {
-        console.log(response.status);
         return;
       });
   };
