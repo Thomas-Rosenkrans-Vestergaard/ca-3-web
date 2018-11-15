@@ -1,4 +1,5 @@
 export default {
     holidays: "http://localhost:8080/ca3/api/holidays/",
-    files: "http://localhost:8080/ca3/api/files/"
+    files: "http://localhost:8080/ca3/api/files/",
+    starWars: "http://localhost:8080/ca3/api/star-wars/",
 };
