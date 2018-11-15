@@ -60,7 +60,6 @@ class Holidays extends Component {
 
     return (
       <div>
-        <h3>{country.name}</h3>
         <table>
           <thead>
             <tr>
