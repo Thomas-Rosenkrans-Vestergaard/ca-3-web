@@ -129,7 +129,7 @@ class StarWars extends React.Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col s12">
+                    <div className="col s12 no-padding">
                         <table>
                             <thead>
                                 <tr>
@@ -151,7 +151,7 @@ class StarWars extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s12">
+                    <div className="col s12 no-padding">
                         <button onClick={() => this.previousPage(key, data)} className="btn" disabled={data.previous == null}>Previous page</button>
                         <button onClick={() => this.nextPage(key, data)} style={{ marginLeft: '20px' }} className="btn" disabled={data.next == null}>Next page</button>
                     </div>
