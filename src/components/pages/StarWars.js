@@ -1,6 +1,6 @@
 import React from "react";
 
-import urls from '../assets/urls.js';
+import urls from '../../assets/urls.js';
 
 class StarWars extends React.Component {
 

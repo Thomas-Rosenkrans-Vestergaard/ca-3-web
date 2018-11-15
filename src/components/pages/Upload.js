@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import urls from '../assets/urls.js';
+import urls from '../../assets/urls.js';
 
 class Upload extends Component {
 

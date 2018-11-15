@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../hoc/Aux';
+import Aux from '../../hoc/Aux';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class Login extends Component{

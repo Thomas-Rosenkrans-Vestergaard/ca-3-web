@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import urls from "../assets/urls";
+import urls from "../../assets/urls";
 
 class Holidays extends Component {
   constructor(props) {

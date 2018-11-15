@@ -1,5 +1,5 @@
 import React from "react";
-import urls from "../assets/urls";
+import urls from "../../assets/urls";
 
 class Ghibli extends React.Component {
   constructor(props) {
