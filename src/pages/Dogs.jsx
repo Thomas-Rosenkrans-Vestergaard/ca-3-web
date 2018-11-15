@@ -1,4 +1,5 @@
 import React from "react";
+import urls from "../urls";
 
 class Dog extends React.Component {
   state = {
@@ -7,7 +8,8 @@ class Dog extends React.Component {
   };
   render() {
     return (
-      <div>
+      <>
+      <h1 className="title center"></h1>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -31,12 +33,12 @@ class Dog extends React.Component {
             <tbody>{this.getRows()}</tbody>
           </table>
         </div>
-      </div>
+      </>
     );
   }
 
   getDogsByBreed(dogBreed) {
-    return fetch("http://localhost:8080/ca3/api/dogs/" + dogBreed)
+    return fetch(urls.dogs + dogBreed)
       .then(response => {
         if (response.status === 200) {
           return response.json().then(data => data.message);
@@ -67,7 +69,7 @@ class Dog extends React.Component {
       return (
         <tr key={picture}>
           <td>
-            <img src={picture} />
+            <img src={picture} alt="dog picture " />
           </td>
         </tr>
       );
