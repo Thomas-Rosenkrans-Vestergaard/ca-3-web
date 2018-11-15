@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 
 import "./App.css";
 
-import Holidays from "./pages/Holidays";
-import Home from "./pages/Home";
-import Upload from "./pages/Upload";
-import Dogs from "./pages/Dogs";
-import Hearthstone from "./pages/Hearthstone";
-import Ghibli from "./pages/Ghibli";
-import Jokes from "./pages/Jokes";
-import StarWars from "./pages/StarWars";
+import Holidays from "./components/pages/Holidays";
+import Home from "./components/pages/Home";
+import Upload from "./components/pages/Upload";
+import Dogs from "./components/pages/Dogs";
+import Hearthstone from "./components/pages/Hearthstone";
+import Ghibli from "./components/pages/Ghibli";
+import Jokes from "./components/pages/Jokes";
+import StarWars from "./components/pages/StarWars";
+import Login from './components/login/Login';
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
             </ul>
           </nav>
           <div id="contents">
+          <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/holidays" component={Holidays} />
             <Route path="/upload-files" component={Upload} />
@@ -60,6 +62,8 @@ class App extends Component {
             <Route path="/ghibli" component={Ghibli} />
             <Route path="/jokes" component={Jokes} />
             <Route path="/star-wars" component={StarWars} />
+            <Route component={Error} />
+            </Switch>
           </div>
         </div>
       </Router>
