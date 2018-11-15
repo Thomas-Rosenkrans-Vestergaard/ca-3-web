@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
-import Aux from '../../hoc/Aux';
+import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
-class Login extends Component{
+class Login extends Component {
 
-    render() {
-        return(
-            <Aux>
-                <div className="Login">
+  render() {
+    return (
+      <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -34,9 +32,8 @@ class Login extends Component{
           >
             Login
           </Button>
-        </form>  
-              </div>
-            </Aux>
-        )
-    }
+        </form>
+      </div>
+    )
+  }
 }
