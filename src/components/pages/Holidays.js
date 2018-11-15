@@ -41,11 +41,11 @@ class Holidays extends Component {
           <a href="https://date.nager.at/">Public Holidays</a> api.
         </p>
         <select className="browser-default" onChange={this.onSelect}>
-          <option selected disabled>
+          <option disabled>
             Select country.
           </option>
-          {this.state.countries.map(country => (
-            <option value={country.code}>{country.name}</option>
+          {this.state.countries.map((country, index) => (
+            <option key={index} value={country.code}>{country.name}</option>
           ))}
         </select>
         {this.renderCountryInformation()};

@@ -13,7 +13,6 @@ class Upload extends Component {
         fetch(urls.files)
             .then(response => response.json())
             .then(files => {
-                console.log(files);
                 this.setState({ files });
             });
     }
@@ -73,15 +72,15 @@ class Upload extends Component {
                     <div className="row">
                         <div className="col s12 input-field no-padding">
                             <input type="text" name="title" id="title-input" />
-                            <label for="title-input">Title</label>
+                            <label htmlFor="title-input">Title</label>
                         </div>
                         <div className="col s12 file-field input-field no-padding">
-                            <div class="btn">
+                            <div className="btn">
                                 <span>File</span>
                                 <input name="file" type="file" />
                             </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" />
+                            <div className="file-path-wrapper">
+                                <input className="file-path validate" type="text" />
                             </div>
                         </div>
                         <div className="col s12 input-field no-padding">
@@ -101,7 +100,7 @@ class Upload extends Component {
                     </thead>
                     <tbody>
                         {files.map((file, index) =>
-                            <tr>
+                            <tr key={index}>
                                 <td>{file.title}</td>
                                 <td>{file.mime}</td>
                                 <td>{file.size}</td>
