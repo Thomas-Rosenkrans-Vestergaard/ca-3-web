@@ -1,4 +1,5 @@
 import React from "react";
+import urls from "../urls";
 
 class Jokes extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Jokes extends React.Component {
     console.log(this.state);
     return (
       <div>
-        <button className="btn" onClick={this.clickHandler}>get a random joke!</button>
+        <h1 className="title center">Random joke generator!</h1>
+        <button className="btn-large waves-effect waves-light red  " onClick={this.clickHandler}>get a random joke!</button>
         <table>
           <thead>
             <tr>
@@ -27,8 +29,8 @@ class Jokes extends React.Component {
   }
 
   clickHandler = () => {
-    fetch("http://localhost:8080/ca3/api/joke").then(response => {
-      response.json().then(joke => {
+    fetch(urls.jokes).then(response => {
+      response.json(urls.jokes).then(joke => {
         this.setState({setup: joke.setup, punchline: joke.punchline})
       })
     })

@@ -1,4 +1,5 @@
 import React from "react";
+import urls from "../urls";
 
 class Ghibli extends React.Component {
   constructor(props) {
@@ -8,6 +9,7 @@ class Ghibli extends React.Component {
   render() {
     return (
       <div>
+        <h1 className="title center">Get movies from Studio Ghibli!</h1>
         <button className="btn" onClick={this.clickHandler}>
           get ghibli movies
         </button>
@@ -55,7 +57,7 @@ class Ghibli extends React.Component {
   }
 
   getMovies = () => {
-    return fetch("http://localhost:8080/ca3/api/film/all")
+    return fetch(urls.ghibli + "all")
       .then(response => {
         if (response.status === 200) {
           return response.json();

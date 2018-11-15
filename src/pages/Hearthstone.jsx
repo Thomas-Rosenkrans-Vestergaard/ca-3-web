@@ -1,105 +1,131 @@
 import React from "react";
+import urls from "../urls";
 
 class Hearthstone extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", cards: [] };
+    this.state = { result: null };
   }
 
-  onSubmit = (event) => {
-    console.log("onSubmit called");
+  componentDidMount() {
+    this.page(1);
   }
+
+  page = pageNumber => {
+    if (pageNumber < 1) return;
+    this.getHearthstoneCards(pageNumber).then(data => {
+      this.setState({ result: data });
+    });
+  };
 
   render() {
+    console.log(this.state.cards);
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            value={this.state.input}
-            onChange={this.handleChange}
-          />
-          <input type="submit" name="all" value="get all of the cards" />
-          <input type="submit" name="name" value="search on cardname" />
-        </form>
+        <h1 className="title center">Hearthstone cards!</h1>
         <table>
           <thead>
             <tr>
+              <th>name</th>
               <th>Image</th>
+              <th>text</th>
               <th>Attack</th>
               <th>Health</th>
-              <th>Mana</th>
+              <th>cost</th>
               <th>Description</th>
+              <th>cardSet</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>{this.state.cards.toString()}</td>
-            </tr>
-          </tbody>
+          <tbody>{this.getRows()}</tbody>
         </table>
+        {this.createPaginationButtons()}
       </div>
     );
   }
 
-  onSubmit = event => {
-    event.preventDefault();
-    if (event.target.name === undefined) {
-      this.getHearthstoneCards().then(cards => {
-        console.log("all cards")
-        this.setState({ cards: cards });
-      })
-    } else if (this.state.input === "" || this.state.input === "defaulttext") {
-      const setUp = this.props.children;
-    } else {
-      this.getHearthstoneCard(this.state.input).then(card => {
-        this.setState({ cards: {card} });
-      })
+  createPaginationButtons = () => {
+    if (this.state.result == null) return null;
+
+    const buttonsCount = Math.ceil(this.state.result.total / 50);
+    const buttons = [];
+    for (let i = 1; i <= buttonsCount; i++) {
+      buttons.push(
+        <li
+          class={
+            i == this.state.result.pageNumber
+              ? "waves-effect active"
+              : "waves-effect"
+          }
+        >
+          <a href="#!" onClick={() => this.page(i)}>
+            {i}
+          </a>
+        </li>
+      );
     }
+
+    return (
+      <ul class="pagination">
+        <li
+          class={
+            this.state.result.pageNumber === 1 ? "disabled" : "waves-effect"
+          }
+        >
+          <a onClick={() => this.page(this.state.result.pageNumber - 1)}>
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+        {buttons}
+        <li
+          class={
+            this.state.result.pageNumber === 74 ? "disabled" : "waves-effect"
+          }
+        >
+          <a onClick={() => this.page(this.state.result.pageNumber + 1)}>
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul>
+    );
   };
 
-  handleChange = event => {
-    this.setState({ input: event.target.value });
-  };
-
-  getHearthstoneCard(name) {
-    return fetch(
-      "http://http://localhost:8080/ca3/api/hearthstone/search/" + name
-    ).then(response => {
-      console.log(response);
-      return response;
-    });
-  }
-  getHearthstoneCards() {
-    return fetch("http://localhost:8080/ca3/api/hearthstone/all").then(
+  getHearthstoneCards(pageNumber) {
+    return fetch(urls.hearthstone + "paginated/50/" + pageNumber).then(
       response => {
-        console.log(response);
-        return response;
+        return response.json();
       }
     );
   }
-  getRows() {
-    return this.state.cards.map(card => {
+
+  getRows = () => {
+    if (this.state.result == null) return null;
+
+    console.log(this.state.cards);
+    return this.state.result.results.map(card => {
+      console.log(card.img);
       return (
-        <tr key={card.description}>
-          <td>
-            <img src={card.picture} alt="card picture" />
-          </td>
-          <td>
-            <img src={card.attack} alt="card attack" />
-          </td>
-          <td>
-            <img src={card.health} alt="card health" />
-          </td>
-          <td>
-            <img src={card.mana} alt="card mana" />
-          </td>
-          <td>
-            <img src={card.description} alt="card description" />
-          </td>
+        <tr key={card.flavor}>
+          <td>{card.name}</td>
+          <td>{this.createImage(card.img)}</td>
+          <td>{card.text}</td>
+          <td>{card.attack}</td>
+          <td>{card.health}</td>
+          <td>{card.cost}</td>
+          <td>{card.flavor}</td>
+          <td>{card.cardSet}</td>
         </tr>
       );
     });
+  };
+
+  createImage(image) {
+    if (image !== undefined) {
+      return (
+        <img style={{ maxHeight: "150px" }} src={image} alt="card picture" />
+      );
+    } else {
+      return "No picture";
+    }
   }
 }
 
