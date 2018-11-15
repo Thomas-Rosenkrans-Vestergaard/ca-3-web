@@ -1,5 +1,5 @@
 import React from "react";
-import urls from "../urls";
+import urls from "../assets/urls";
 
 class Dog extends React.Component {
   state = {
