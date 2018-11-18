@@ -60,3 +60,10 @@ th, td {
 tbody tr:nth-of-type(2n){
   background: #eee;
 }
+
+#authentication {
+  background: orange;
+  color: black;
+  padding: 20px;
+  margin: 20px 0;
+}

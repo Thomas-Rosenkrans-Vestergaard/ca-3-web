@@ -4,18 +4,52 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-do
 import "./App.css";
 
 import Holidays from "./components/pages/Holidays";
-import Home from "./components/pages/Home";
 import Upload from "./components/pages/Upload";
 import Dogs from "./components/pages/Dogs";
 import Hearthstone from "./components/pages/Hearthstone";
 import Ghibli from "./components/pages/Ghibli";
 import Jokes from "./components/pages/Jokes";
 import StarWars from "./components/pages/StarWars";
-import Login from './components/login/Login';
+import Login from './components/pages/Login';
+
+import urls from './assets/urls.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
+    let user = localStorage.getItem("user");
+    if(user != undefined)
+      user = JSON.parse(user);
+
+    this.state = { user: user, token: localStorage.getItem("token") };
+  }
+
+  authenticate = (email, password) => {
+    return fetch(urls.authentication, {
+      method: 'post',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+    })
+      .then(response => response.json());
+  }
+
+  onLogin = (email, password) => {
+    this.authenticate(email, password).then(result => {
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("token", result.token);
+      this.setState({ user: result.user, token: result.token })
+    })
+  }
+
+  onLogout = () => {
+    this.setState({ user: null, token: null });
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    document.location.href = "holidays";
   }
 
   render() {
@@ -25,15 +59,10 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <NavLink to="/" exact>
-                  Home
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to="/holidays">Holidays</NavLink>
               </li>
               <li>
-                <NavLink to="/upload-files">Upload files</NavLink>
+                {this.state.user != null && <NavLink to="/upload-files">Upload files</NavLink>}
               </li>
               <li>
                 <NavLink to="/dogs">Dogs</NavLink>
@@ -53,16 +82,16 @@ class App extends Component {
             </ul>
           </nav>
           <div id="contents">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/holidays" component={Holidays} />
-            <Route path="/upload-files" component={Upload} />
-            <Route path="/dogs" component={Dogs} />
-            <Route path="/hearthstone" component={Hearthstone} />
-            <Route path="/ghibli" component={Ghibli} />
-            <Route path="/jokes" component={Jokes} />
-            <Route path="/star-wars" component={StarWars} />
-            <Route component={Error} />
+            <Login state={this.state} onLogin={this.onLogin} onLogout={this.onLogout} />
+            <Switch>
+              <Route path="/holidays" component={Holidays} />
+              <Route path="/upload-files" component={() => <Upload state={this.state}/>} />
+              <Route path="/dogs" component={Dogs} />
+              <Route path="/hearthstone" component={Hearthstone} />
+              <Route path="/ghibli" component={Ghibli} />
+              <Route path="/jokes" component={Jokes} />
+              <Route path="/star-wars" component={StarWars} />
+
             </Switch>
           </div>
         </div>

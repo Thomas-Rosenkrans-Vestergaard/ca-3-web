@@ -10,7 +10,12 @@ class Upload extends Component {
     }
 
     componentDidMount = () => {
-        fetch(urls.files)
+
+        fetch(urls.files, {
+            headers: {
+                "Authorization": "Bearer " + this.props.state.token
+            }
+        })
             .then(response => response.json())
             .then(files => {
                 this.setState({ files });
@@ -28,6 +33,7 @@ class Upload extends Component {
                 headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
+                    "Authorization": "Bearer " + this.props.state.token
                 },
             })
                 .then(response => response.json())

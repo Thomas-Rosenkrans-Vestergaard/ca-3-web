@@ -6,5 +6,5 @@ export default {
     ghibli: "http://localhost:8080/ca3/api/film/", 
     hearthstone: "http://localhost:8080/ca3/api/hearthstone/",
     starWars: "http://localhost:8080/ca3/api/star-wars/",
-
+    authentication: "http://localhost:8080/ca3/api/authentication/",
 };
