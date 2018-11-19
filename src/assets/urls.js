@@ -7,4 +7,5 @@ export default {
     hearthstone: "http://localhost:8080/ca3/api/hearthstone/",
     starWars: "http://localhost:8080/ca3/api/star-wars/",
     authentication: "http://localhost:8080/ca3/api/authentication/",
+    admin: "http://localhost:8080/ca3/api/admin/"
 };

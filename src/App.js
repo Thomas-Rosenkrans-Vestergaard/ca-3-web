@@ -11,6 +11,7 @@ import Ghibli from "./components/pages/Ghibli";
 import Jokes from "./components/pages/Jokes";
 import StarWars from "./components/pages/StarWars";
 import Login from './components/pages/Login';
+import Admin from './components/pages/Admin';
 
 import urls from './assets/urls.js';
 
@@ -62,7 +63,7 @@ class App extends Component {
                 <NavLink to="/holidays">Holidays</NavLink>
               </li>
               <li>
-                {this.state.user != null && <NavLink to="/upload-files">Upload files</NavLink>}
+                {(this.state.user != null && this.state.user.role == "USER") && <NavLink to="/upload-files">Upload files</NavLink>}
               </li>
               <li>
                 <NavLink to="/dogs">Dogs</NavLink>
@@ -79,6 +80,9 @@ class App extends Component {
               <li>
                 <NavLink to="/star-wars">Star Wars</NavLink>
               </li>
+              <li>
+              {(this.state.user != null && this.state.user.role == "ADMIN") &&  <NavLink to="/admin">Admin area</NavLink> }
+              </li>
             </ul>
           </nav>
           <div id="contents">
@@ -91,7 +95,7 @@ class App extends Component {
               <Route path="/ghibli" component={Ghibli} />
               <Route path="/jokes" component={Jokes} />
               <Route path="/star-wars" component={StarWars} />
-
+              <Route path="/admin" component={() => <Admin state={this.state} />} />
             </Switch>
           </div>
         </div>
